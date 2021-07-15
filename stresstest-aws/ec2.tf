@@ -532,6 +532,12 @@ resource "local_file" "telegraf_file" {
     container_names = []
     timeout = "5s"
 
+[[inputs.exec]]
+   commands = ["/etc/telegraf/scripts/disk-usage.sh"]
+   timeout = "5s"
+   name_suffix = ""
+   data_format = "influx"
+
 [[outputs.prometheus_client]]
     listen = ":9126"
     path   = "/metrics"

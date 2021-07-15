@@ -11,6 +11,8 @@ services:
     ports:
       - 9126:9126
     volumes:
+      - /data:/data:ro
+      - ./disk-usage.sh:/etc/telegraf/scripts/disk-usage.sh:ro
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /sys:/rootfs/sys:ro

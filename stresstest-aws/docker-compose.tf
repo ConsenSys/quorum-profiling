@@ -56,6 +56,7 @@ x-quorum-def:
         --wsaddr 0.0.0.0 \
         --wsport ${local.container_ws_port} \
         --wsapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,${var.consensus == "raft" ? "raft" : "istanbul"} \
+        --metrics --metrics.expensive --metrics.influxdb --metrics.influxdb.endpoint "http://${aws_instance.wrk.private_ip}:8086" --metrics.influxdb.username "telegraf" --metrics.influxdb.password "test123" --metrics.influxdb.database "telegraf" --metrics.influxdb.tags "node=${format("node-%d", count.index)}" \
         --port ${local.container_p2p_port} \
 %{if var.consensus == "ibft"~}
         --istanbul.blockperiod ${var.blockPeriod > 10 ? 1 : var.blockPeriod} \
