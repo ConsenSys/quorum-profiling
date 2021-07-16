@@ -100,7 +100,7 @@ x-tx-manager-def:
     - -c
     - |
       rm -f ${local.tm_dir_container_path}/tm.ipc
-      java -Xms1024M -Xmx2048M -jar /tessera/tessera-app.jar -configfile ${local.tm_dir_container_path}/config.json
+      /tessera/bin/tessera -configfile ${local.tm_dir_container_path}/config.json
 %{endif~}
 services:
   node:
